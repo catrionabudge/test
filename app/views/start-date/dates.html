@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="resp-nav-placeholder">
+   <!-- anchor to fake the sign out buttons. Doesn't resolve issue on mobile -->
+   <div class="signout-link">
+     <a href="#1" style="margin-right: 30px;">John Smith</a>
+      <a href="#1">Sign out</a>
+   </div>
+<a href="#1" onClick="history.go(-1); return false;" class="govuk-back-link">Back</a>
+</div>
+{% endblock%}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="salary-question" method="post" class="form">
+
+      <h1 class="govuk-heading-l">What are the start and end dates for {% if data['worker-given-name'] %}{{ data['worker-given-name']}} {% else %}John {% endif %}
+      {% if data['worker-surname'] %}{{ data['worker-surname']}}{% else %}Smith{% endif %}'s employment?</h1>
+      <p class="govuk-body">You must allow time for the worker's visa to be processed when entering a start date. If they are applying to extend their visa for the same role, the start date is the day after their current visa expires.</p>
+      <p class="govuk-body">A person sponsored under the Government Authorised Exchange (GAE) route can work for a maximum of:
+      <ul class="govuk-body">
+          <li>12 months if under the work experience programme</li>
+          <li>2 years for all the other programmes</li>
+      </ul>
+      <p class="govuk-body">Those already in the UK with permission on the GAE route can apply to extend their stay up to these maximum periods.</p>
+      <div class="govuk-form-group">
+         <fieldset class="govuk-fieldset" role="group" aria-describedby="expiry-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+               Start date
+            </legend>
+            <div id="expiry-hint" class="govuk-hint">
+               For example, 31 3 2021
+            </div>
+            <div class="govuk-date-input" id="expiry">
+               <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                     <label class="govuk-label govuk-date-input__label" for="expiry-day">
+                     Day
+                     </label>
+                     <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expiry-day" name="start-date-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['start-date-day'] }}">
+                  </div>
+               </div>
+               <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                     <label class="govuk-label govuk-date-input__label" for="expiry-month">
+                     Month
+                     </label>
+                     <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expiry-month" name="start-date-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['start-date-month'] }}">
+                  </div>
+               </div>
+               <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                     <label class="govuk-label govuk-date-input__label" for="expiry-year">
+                     Year
+                     </label>
+                     <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="expiry-year" name="start-date-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['start-date-year'] }}">
+                  </div>
+               </div>
+            </div>
+         </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+         <fieldset class="govuk-fieldset" role="group" aria-describedby="expiry-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+               End date
+            </legend>
+            <div id="expiry-hint" class="govuk-hint">
+               For example, 31 3 2025
+            </div>
+            <div class="govuk-date-input" id="expiry">
+               <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                     <label class="govuk-label govuk-date-input__label" for="expiry-day">
+                     Day
+                     </label>
+                     <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="end-date-day" name="end-date-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['end-date-day'] }}">
+                  </div>
+               </div>
+               <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                     <label class="govuk-label govuk-date-input__label" for="expiry-month">
+                     Month
+                     </label>
+                     <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expiry-month" name="end-date-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['end-date-month'] }}">
+                  </div>
+               </div>
+               <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                     <label class="govuk-label govuk-date-input__label" for="expiry-year">
+                     Year
+                     </label>
+                     <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="expiry-year" name="end-date-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['end-date-year'] }}">
+                  </div>
+               </div>
+            </div>
+         </fieldset>
+      </div>
+
+<div class="govuk-button-group">
+   <button class="govuk-button" data-module="govuk-button">
+   Save and continue
+   </button>
+   <a class="govuk-link" href="#">Save and return later</a>
+</div>
+
+    </form>
+  </div>
+</div>
+{% endblock %}
